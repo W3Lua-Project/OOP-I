@@ -1,6 +1,6 @@
-require 'w3ts.classes'
-require 'w3ts.decl'
-require 'w3ts.handles.index'
+require 'w3lua.classes'
+require 'w3lua.decl'
+require 'w3lua.handles.index'
 
 -- -- example creating a new object
 -- compiletime(function()

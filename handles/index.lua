@@ -1,3 +1,3 @@
-require 'w3ts.handles.handle'
-require 'w3ts.handles.handle_point'
-require 'w3ts.handles.camera'
+require 'w3lua.handles.handle'
+require 'w3lua.handles.handle_point'
+require 'w3lua.handles.camera'
