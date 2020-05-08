@@ -18,8 +18,8 @@ do
     ---@param inheritedClass ClassType
     ---@return ClassType
     function inheritedClass(inheritedClass)
-        local class = setmetatable({},{__index = inheritedClass})
-        class.old = setmetatable({},{__index = inheritedClass})
+        local class = setmetatable({},{__index = inheritedClass}) ---@type ClassType
+        class.old = setmetatable({},{__index = inheritedClass}) ---@type ClassType
         return class
     end
 

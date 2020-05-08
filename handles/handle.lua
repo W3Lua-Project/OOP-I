@@ -13,7 +13,7 @@ function Handle:new(handle)
 
     object.handle = handle ---@type handle
 
-    ---@return number
+    ---@return integer
     function object.id()
         return GetHandleId(object.handle)
     end

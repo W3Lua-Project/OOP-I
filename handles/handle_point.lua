@@ -4,14 +4,14 @@
 ---@class obj_HandlePoint:obj_Handle
 HandlePoint = newClass(Handle) ---@type HandlePoint
 
----@param x number
----@param y number
+---@param x real
+---@param y real
 function HandlePoint:new(x,y)
-    local object = HandlePoint.old:new(Location(x,y)) ---@type obj_HandlePoint
-    HandlePoint:instantiate(object)
+    local object = self.old:new(Location(x,y)) ---@type obj_HandlePoint
+    self:instantiate(object)
 
-    ---@param value number
-    ---@return number|null
+    ---@param value real
+    ---@return real|null
     function object.x(value)
         if not value then
             return GetLocationX(object.handle)
@@ -20,8 +20,8 @@ function HandlePoint:new(x,y)
         end
     end
 
-    ---@param value number
-    ---@return number|null
+    ---@param value real
+    ---@return real|null
     function object.y(value)
         if not value then
             return GetLocationY(object.handle)
@@ -30,7 +30,7 @@ function HandlePoint:new(x,y)
         end
     end
 
-    ---@return number
+    ---@return real
     function object.z()
         return GetLocationZ(object.handle)
     end
@@ -39,8 +39,8 @@ function HandlePoint:new(x,y)
         RemoveLocation(object.handle)
     end
 
-    ---@param x number
-    ---@param y number
+    ---@param x real
+    ---@param y real
     function object.move(x,y)
         MoveLocation(object.handle,x,y)
     end

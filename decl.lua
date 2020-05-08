@@ -13,8 +13,6 @@ function FourCC(id) return _FourCC(id) end
 ---@class obj_WarObject:ObjectType
 WarObject = newClass() ---@type WarObject
 function WarObject:new()
-    local self = self
-
     local object = self.old:new() ---@type obj_WarObject
 
     -- All fields available on this object
