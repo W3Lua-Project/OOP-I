@@ -1,5 +1,57 @@
 ---@class camerafield:handle
 ---@class camerasetup:handle
+---@class blendmode:handle
+---@class texmapflags:handle
+
+CameraField = {}
+
+---@param i integer
+---@return camerafield
+function CameraField.convert(i)
+    return ConvertCameraField(i)
+end
+
+CameraField.TargetDistance = CameraField.convert(0)
+CameraField.Farz = CameraField.convert(1)
+CameraField.AngleOfAttack = CameraField.convert(2)
+CameraField.FieldOfView = CameraField.convert(3)
+CameraField.Roll = CameraField.convert(4)
+CameraField.Rotation = CameraField.convert(5)
+CameraField.ZOffset = CameraField.convert(6)
+CameraField.Nearz = CameraField.convert(7)
+CameraField.LocalPitch = CameraField.convert(8)
+CameraField.LocalYaw = CameraField.convert(9)
+CameraField.LocalRoll = CameraField.convert(10)
+
+BlendMode = {}
+
+---@param i integer
+---@return blendmode
+function BlendMode.convert(i)
+    return ConvertBlendMode(i)
+end
+
+BlendMode.None = BlendMode.convert(0)
+BlendMode.DontCare = BlendMode.convert(0)
+BlendMode.KeyAlpha = BlendMode.convert(1)
+BlendMode.Blend = BlendMode.convert(2)
+BlendMode.Additive = BlendMode.convert(3)
+BlendMode.Modulate = BlendMode.convert(4)
+BlendMode.Modulate2X = BlendMode.convert(5)
+
+TexMapFlags = {}
+
+---@param i integer
+---@return texmapflags
+function TexMapFlags.convert(i)
+    return ConvertTexMapFlags(i)
+end
+
+TexMapFlags.None = TexMapFlags.convert(0)
+TexMapFlags.WrapU = TexMapFlags.convert(1)
+TexMapFlags.WrapV = TexMapFlags.convert(2)
+TexMapFlags.WrapUV = TexMapFlags.convert(3)
+
 
 Camera = {}
 
@@ -104,148 +156,6 @@ function Camera.setOrientController(whichUnit,xoffset,yoffset)
     SetCameraOrientController(whichUnit,xoffset,yoffset)
 end
 
----@return camerasetup
-function CreateCameraSetup() end
-
----@param whichSetup camerasetup
----@param whichField camerafield
----@param value real
----@param duration real
-function CameraSetupSetField(whichSetup, whichField, value, duration) end
-
----@param whichSetup camerasetup
----@param whichField camerafield
----@return real
-function CameraSetupGetField(whichSetup, whichField) end
-
----@param whichSetup camerasetup
----@param x real
----@param y real
----@param duration real
-function CameraSetupSetDestPosition(whichSetup, x, y, duration) end
-
----@param whichSetup camerasetup
----@return location
-function CameraSetupGetDestPositionLoc(whichSetup) end
-
----@param whichSetup camerasetup
----@return real
-function CameraSetupGetDestPositionX(whichSetup) end
-
----@param whichSetup camerasetup
----@return real
-function CameraSetupGetDestPositionY(whichSetup) end
-
----@param whichSetup camerasetup
----@param doPan boolean
----@param panTimed boolean
-function CameraSetupApply(whichSetup, doPan, panTimed) end
-
----@param whichSetup camerasetup
----@param zDestOffset real
-function CameraSetupApplyWithZ(whichSetup, zDestOffset) end
-
----@param whichSetup camerasetup
----@param doPan boolean
----@param forceDuration real
-function CameraSetupApplyForceDuration(whichSetup, doPan, forceDuration) end
-
----@param whichSetup camerasetup
----@param zDestOffset real
----@param forceDuration real
-function CameraSetupApplyForceDurationWithZ(whichSetup, zDestOffset, forceDuration) end
-
-
----@param mag real
----@param velocity real
-function CameraSetTargetNoise(mag, velocity) end
-
----@param mag real
----@param velocity real
-function CameraSetSourceNoise(mag, velocity) end
-
-
----@param mag real
----@param velocity real
----@param vertOnly boolean
-function CameraSetTargetNoiseEx(mag, velocity, vertOnly) end
-
----@param mag real
----@param velocity real
----@param vertOnly boolean
-function CameraSetSourceNoiseEx(mag, velocity, vertOnly) end
-
-
----@param factor real
-function CameraSetSmoothingFactor(factor) end
-
-
----@param filename string
-function SetCineFilterTexture(filename) end
-
----@param whichMode blendmode
-function SetCineFilterBlendMode(whichMode) end
-
----@param whichFlags texmapflags
-function SetCineFilterTexMapFlags(whichFlags) end
-
----@param minu real
----@param minv real
----@param maxu real
----@param maxv real
-function SetCineFilterStartUV(minu, minv, maxu, maxv) end
-
----@param minu real
----@param minv real
----@param maxu real
----@param maxv real
-function SetCineFilterEndUV(minu, minv, maxu, maxv) end
-
----@param red integer
----@param green integer
----@param blue integer
----@param alpha integer
-function SetCineFilterStartColor(red, green, blue, alpha) end
-
----@param red integer
----@param green integer
----@param blue integer
----@param alpha integer
-function SetCineFilterEndColor(red, green, blue, alpha) end
-
----@param duration real
-function SetCineFilterDuration(duration) end
-
----@param flag boolean
-function DisplayCineFilter(flag) end
-
----@return boolean
-function IsCineFilterDisplayed() end
-
-
----@param portraitUnitId integer
----@param color playercolor
----@param speakerTitle string
----@param text string
----@param sceneDuration real
----@param voiceoverDuration real
-function SetCinematicScene(portraitUnitId, color, speakerTitle, text, sceneDuration, voiceoverDuration) end
-
----@param whichField camerafield
----@return real
-function GetCameraField(whichField) end
-
----@param whichSetup camerasetup
----@param doPan boolean
----@param forcedDuration real
----@param easeInDuration real
----@param easeOutDuration real
----@param smoothFactor real
-function BlzCameraSetupApplyForceDurationSmooth(whichSetup, doPan, forcedDuration, easeInDuration, easeOutDuration, smoothFactor) end
-
-
-
-
 ---@param flag boolean
 ---@return boolean|null
 function Camera.visible(flag)
@@ -317,13 +227,6 @@ function Camera.targetHandlePoint()
     return HandlePoint.fromHandle(GetCameraTargetPositionLoc())
 end
 
----@param whichField camerafield
----@param offset real
----@param duration real
-function Camera.adjustField(whichField,offset,duration)
-    AdjustCameraField(whichField,offset,duration)
-end
-
 function Camera.endCinematicScene()
     EndCinematicScene()
 end
@@ -333,8 +236,192 @@ function Camera.forceCinematicSubtitles(flag)
     ForceCinematicSubtitles(flag)
 end
 
+--===================================================
+-- Camera Margin s for use with GetCameraMargin
+--===================================================
+
+CameraMargin = {}
+
+CameraMargin.Left = 0 ---@type integer
+CameraMargin.Right = 1 ---@type integer
+CameraMargin.Top = 2 ---@type integer
+CameraMargin.Bottom = 3 ---@type integer
+
 ---@param whichMargin integer
 ---@return real
 function Camera.getMargin(whichMargin)
     return GetCameraMargin(whichMargin)
+end
+
+---@param mag real
+---@param velocity real
+---@param vertOnly boolean
+function Camera.setSourceNoise(mag,velocity,vertOnly)
+    if not vertOnly then
+        CameraSetSourceNoise(mag,velocity)
+    else
+        CameraSetSourceNoiseEx(mag,velocity,vertOnly)
+    end
+end
+
+---@param mag real
+---@param velocity real
+---@param vertOnly boolean
+function Camera.setTargetNoise(mag,velocity,vertOnly)
+    if not vertOnly then
+        CameraSetTargetNoise(mag,velocity)
+    else
+        CameraSetTargetNoiseEx(mag,velocity,vertOnly)
+    end
+end
+
+---@param factor real
+function Camera.setSmoothingFactor(factor)
+    CameraSetSmoothingFactor(factor)
+end
+
+---@param whichField camerafield
+---@return real
+function Camera.getField(whichField)
+    return GetCameraField(whichField)
+end
+
+CineFilter = {}
+
+---@param filename string
+function CineFilter.setTexture(filename)
+    SetCineFilterTexture(filename)
+end
+
+---@param whichMode blendmode
+function CineFilter.setBlendMode(whichMode)
+    SetCineFilterBlendMode(whichMode)
+end
+
+---@param whichFlags texmapflags
+function CineFilter.setTexMapFlags(whichFlags)
+    SetCineFilterTexMapFlags(whichFlags)
+end
+
+---@param minu real
+---@param minv real
+---@param maxu real
+---@param maxv real
+function CineFilter.setStartUV(minu,minv,maxu,maxv)
+    SetCineFilterStartUV(minu,minv,maxu,maxv)
+end
+
+---@param minu real
+---@param minv real
+---@param maxu real
+---@param maxv real
+function CineFilter.setEndUV(minu,minv,maxu,maxv)
+    SetCineFilterEndUV(minu,minv,maxu,maxv)
+end
+
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha integer
+function CineFilter.setStartColor(red,green,blue,alpha)
+    SetCineFilterStartColor(red,green,blue,alpha)
+end
+
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha integer
+function CineFilter.setEndColor(red,green,blue,alpha)
+    SetCineFilterEndColor(red,green,blue,alpha)
+end
+
+---@param duration real
+function CineFilter.setDuration(duration)
+    SetCineFilterDuration(duration)
+end
+
+---@param portraitUnitId integer
+---@param color playercolor
+---@param speakerTitle string
+---@param text string
+---@param sceneDuration real
+---@param voiceoverDuration real
+function CineFilter.setScene(portraitUnitId, color, speakerTitle, text, sceneDuration, voiceoverDuration)
+    SetCinematicScene(portraitUnitId, color, speakerTitle, text, sceneDuration, voiceoverDuration)
+end
+
+
+---@class CameraSetup:Handle
+---@class obj_CameraSetup:obj_Handle
+CameraSetup = newClass(Handle) ---@type CameraSetup
+function CameraSetup:new()
+    local object = self.old:new(CreateCameraSetup()) ---@type obj_CameraSetup
+    
+    ---@param whichField camerafield
+    ---@param value real
+    ---@param duration real
+    ---@return real|null
+    function object.field(whichField,value,duration)
+        if not (value or duration) then
+            return CameraSetupGetField(object.handle,whichField)
+        else
+            CameraSetupSetField(object.handle,whichField,value,duration)
+        end
+    end
+
+    ---@param x real
+    ---@param y real
+    ---@param duration real
+    ---@return obj_HandlePoint|null
+    function object.destHandlePos(x,y,duration)
+        if not (x or y or duration) then
+            return CameraSetupGetDestPositionLoc(object.handle)
+        else
+            CameraSetupSetDestPosition(object.handle,x,y,duration)
+        end
+    end
+
+    ---@return real
+    function object.destPosX()
+        return CameraSetupGetDestPositionX(object.handle)
+    end
+
+    ---@return real
+    function object.destPosY()
+        return CameraSetupGetDestPositionY(object.handle)
+    end
+
+    ---@param doPan boolean
+    ---@param panTimed boolean
+    function object.apply(doPan,panTimed)
+        CameraSetupApply(object.handle,doPan,panTimed)
+    end
+
+    ---@param zDestOffset real
+    function object.withZApply(zDestOffset)
+        CameraSetupApplyWithZ(object.handle,zDestOffset)
+    end
+
+    ---@param doPan boolean
+    ---@param forceDuration real
+    function object.forceDurationApply(doPan,forceDuration)
+        CameraSetupApplyForceDuration(object.handle,doPan,forceDuration)
+    end
+
+    ---@param zDestOffset real
+    ---@param forceDuration real
+    function object.withZForceDurationApply(zDestOffset,forceDuration)
+        CameraSetupApplyForceDurationWithZ(object.handle,zDestOffset,forceDuration)
+    end
+
+    ---@param doPan boolean
+    ---@param forcedDuration real
+    ---@param easeInDuration real
+    ---@param easeOutDuration real
+    ---@param smoothFactor real
+    function object.smoothForceDurationApply(doPan,forcedDuration,easeInDuration,easeOutDuration,smoothFactor)
+        BlzCameraSetupApplyForceDurationSmooth(object.handle,doPan,forcedDuration,easeInDuration,easeOutDuration,smoothFactor)
+    end
+
+    return object
 end

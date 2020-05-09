@@ -1,0 +1,2 @@
+---@class player:agent
+---@class playercolor:handle
