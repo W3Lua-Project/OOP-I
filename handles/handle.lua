@@ -3,14 +3,14 @@
 
 local handles = {}
 
----@class Handle:ClassType
----@class obj_Handle:ObjectType
-Handle = newClass() ---@type Handle
+---@class ClassHandle:ClassType
+---@class Handle:ObjectType
+Handle = newClass() ---@type ClassHandle
 
 ---@param handle handle
----@return obj_Handle
+---@return Handle
 function Handle:new(handle)
-    local object ---@type obj_Handle
+    local object ---@type Handle
     if handles[handle] then
         object = handles[handle]
     else

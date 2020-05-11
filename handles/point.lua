@@ -1,12 +1,12 @@
----@class Point:ClassType
----@class obj_Point:ObjectType
-Point = newClass() ---@type Point
+---@class ClassPoint:ClassType
+---@class Point:ObjectType
+Point = newClass() ---@type ClassPoint
 
 ---@param x real
 ---@param y real
 ---@param z real
 function Point:new(x,y,z)
-    local object = self.old:new() ---@type obj_Point
+    local object = self.old:new() ---@type Point
     object.coordX = x
     object.coordY = y
     object.coordZ = z

@@ -3,13 +3,13 @@
 
 ---@class widget:agent
 
+---@class ClassWidget:ClassHandle
 ---@class Widget:Handle
----@class obj_Widget:obj_Handle
-Widget = newClass(Handle) ---@type Widget
+Widget = newClass(Handle) ---@type ClassWidget
 
 ---@param handle handle
 function Widget:new(handle)
-    local object = self.old:new(handle) ---@type obj_Widget
+    local object = self.old:new(handle) ---@type Widget
     self:instantiate(object)
 
     ---@param newLife real

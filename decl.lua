@@ -9,11 +9,11 @@ local _FourCC = FourCC
 ---@return number
 function FourCC(id) return _FourCC(id) end
 
----@class WarObject:ClassType
----@class obj_WarObject:ObjectType
-WarObject = newClass() ---@type WarObject
+---@class ClassWarObject:ClassType
+---@class WarObject:ObjectType
+WarObject = newClass() ---@type ClassWarObject
 function WarObject:new()
-    local object = self.old:new() ---@type obj_WarObject
+    local object = self.old:new() ---@type WarObject
 
     -- All fields available on this object
     object.all = {}
@@ -31,7 +31,7 @@ function WarObject:new()
     -- Clones this object, creating an independent instance of it.
     -- This instance can then be assigned into a `WarObjects` object
     -- to insert it into the map.
-    ---@return obj_WarObject
+    ---@return WarObject
     function object.clone() end
 
     -- /**
@@ -72,11 +72,11 @@ function WarObject:new()
     return object
 end
 
----@class WarObjects:ClassType
----@class obj_WarObjects:ObjectType
-WarObjects = newClass() ---@type WarObjects
+---@class ClassWarObjects:ClassType
+---@class WarObjects:ObjectType
+WarObjects = newClass() ---@type ClassWarObjects
 function WarObjects:new()
-    local object = self.old:new() ---@type obj_WarObjects
+    local object = self.old:new() ---@type WarObjects
 
     -- /** All WC3 objects of this type in the map. Meant for iteration. */
     object.all = {}
@@ -126,7 +126,7 @@ function WarObjects:new()
     -- * currentMap.objects.units['yyyy'] = myPea
     -- */
     ---@param rawid string
-    ---@return obj_WarObject
+    ---@return WarObject
     function object.getObject(rawid) end
 
     -- /**
@@ -143,37 +143,37 @@ function WarObjects:new()
     -- * See `getObject` fore example usage.
     -- */
     ---@param rawid string
-    ---@param object obj_WarObject
+    ---@param object WarObject
     function object.setObject(rawid,object) end
 
     return object
 end
 
 -- Encapsulates all objects of all types in a map.
----@class WarMapObjects:ClassType
----@class obj_WarMapObjects:ObjectType
-WarMapObjects = newClass() ---@type WarMapObjects
+---@class ClassWarMapObjects:ClassType
+---@class WarMapObjects:ObjectType
+WarMapObjects = newClass() ---@type ClassWarMapObjects
 function WarMapObjects:new()
-    local object = self.old:new() ---@type obj_WarMapObjects
-    object.ability = {} ---@type obj_WarObject
-    object.item = {} ---@type obj_WarObject
-    object.unit = {} ---@type obj_WarObject
-    object.destructable = {} ---@type obj_WarObject
-    object.doodad = {} ---@type obj_WarObject
-    object.buff = {} ---@type obj_WarObject
-    object.upgrade = {} ---@type obj_WarObject
+    local object = self.old:new() ---@type WarMapObjects
+    object.ability = {} ---@type WarObject
+    object.item = {} ---@type WarObject
+    object.unit = {} ---@type WarObject
+    object.destructable = {} ---@type WarObject
+    object.doodad = {} ---@type WarObject
+    object.buff = {} ---@type WarObject
+    object.upgrade = {} ---@type WarObject
     return object
 end
 
 -- Encapsulates a WC3 map during the compilation stage.
----@class WarMap:ClassType
----@class obj_WarMap:ObjectType
-WarMap = newClass() ---@type WarMap
+---@class ClassWarMap:ClassType
+---@class WarMap:ObjectType
+WarMap = newClass() ---@type ClassWarMap
 function WarMap:new()
-    local object = self.old:new() ---@type obj_WarMap
+    local object = self.old:new() ---@type WarMap
     
     -- /** Reference to all object storage in this map. */
-    object.objects = {} ---@type obj_WarMapObjects
+    object.objects = {} ---@type WarMapObjects
 
     -- /**
     -- * Reads a file from the map. Returns the file contents as a
@@ -238,7 +238,7 @@ function WarMap:new()
     -- /**
     -- * Writes out all the object storages to their respective files in the map.
     -- */
-    ---@param objects obj_WarObjects
+    ---@param objects WarObjects
     function object.commitObjectStorage(objects) end
 
     return object

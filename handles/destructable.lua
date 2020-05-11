@@ -4,13 +4,13 @@
 
 ---@class destructable:widget
 
+---@class ClassDestructable:ClassWidget
 ---@class Destructable:Widget
----@class obj_Destructable:obj_Widget
-Destructable = newClass(Widget) ---@type Destructable
+Destructable = newClass(Widget) ---@type ClassDestructable
 
----@param handle handle
+---@param handle destructable
 function Destructable:new(handle)
-    local object = self.old:new(handle) ---@type obj_Destructable
+    local object = self.old:new(handle) ---@type Destructable
     self:instantiate(object)
 
     ---@param flag boolean
@@ -67,7 +67,7 @@ function Destructable:new(handle)
         return TempLocationHandle.move(object.x(),object.y()).z()
     end
 
-    ---@return obj_Point
+    ---@return Point
     function object.pos()
         return Point:new(object.x(),object.y(),object.z())
     end
@@ -138,63 +138,63 @@ function Destructable:new(handle)
     return object
 end
 
----@param objectid integer
+---@param objectid integer|string
 ---@param x real
 ---@param y real
 ---@param face real
 ---@param scale real
 ---@param variation integer
----@return obj_Destructable
+---@return Destructable
 function Destructable:create(objectid,x,y,face,scale,variation)
-    return self:new(CreateDestructable(objectid,x,y,face,scale,variation))
+    return self:new(CreateDestructable(FormatCC(objectid),x,y,face,scale,variation))
 end
 
----@param objectid integer
+---@param objectid integer|string
 ---@param x real
 ---@param y real
 ---@param z real
 ---@param face real
 ---@param scale real
 ---@param variation integer
----@return obj_Destructable
+---@return Destructable
 function Destructable:ZCreate(objectid,x,y,z,face,scale,variation)
-    return self:new(CreateDestructableZ(objectid,x,y,z,face,scale,variation))
+    return self:new(CreateDestructableZ(FormatCC(objectid),x,y,z,face,scale,variation))
 end
 
----@param objectid integer
+---@param objectid integer|string
 ---@param x real
 ---@param y real
 ---@param face real
 ---@param scale real
 ---@param variation integer
----@return obj_Destructable
+---@return Destructable
 function Destructable:deadCreate(objectid,x,y,face,scale,variation)
-    return self:new(CreateDeadDestructable(objectid,x,y,face,scale,variation))
+    return self:new(CreateDeadDestructable(FormatCC(objectid),x,y,face,scale,variation))
 end
 
----@param objectid integer
+---@param objectid integer|string
 ---@param x real
 ---@param y real
 ---@param z real
 ---@param face real
 ---@param scale real
 ---@param variation integer
----@return obj_Destructable
+---@return Destructable
 function Destructable:deadZCreate(objectid,x,y,z,face,scale,variation)
-    return self:new(CreateDeadDestructableZ(objectid,x,y,z,face,scale,variation))
+    return self:new(CreateDeadDestructableZ(FormatCC(objectid),x,y,z,face,scale,variation))
 end
 
----@return obj_Destructable
+---@return Destructable
 function Destructable:triggered()
     return self:new(GetTriggerDestructable())
 end
 
----@return obj_Destructable
+---@return Destructable
 function Destructable:filtered()
     return self:new(GetFilterDestructable())
 end
 
----@return obj_Destructable
+---@return Destructable
 function Destructable:enumed()
     return self:new(GetEnumDestructable())
 end

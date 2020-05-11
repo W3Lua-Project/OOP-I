@@ -217,22 +217,22 @@ function Camera.eyeZ()
     return GetCameraEyePositionZ()
 end
 
----@return obj_LocationHandle
+---@return LocationHandle
 function Camera.eyeLocation()
     return TempLocationHandle.move(Camera.eyeX(),Camera.eyeY())
 end
 
----@return obj_Point
+---@return Point
 function Camera.eyePos()
     return Point:new(Camera.eyeX(),Camera.eyeY())
 end
 
----@return obj_Location
+---@return LocationHandle
 function Camera.targetLocation()
     return TempLocationHandle.move(Camera.targetX(),Camera.targetY())
 end
 
----@return obj_Point
+---@return Point
 function Camera.targetPos()
     return Point:new(Camera.targetX(),Camera.targetY())
 end
@@ -361,11 +361,12 @@ function CineFilter.setScene(portraitUnitId, color, speakerTitle, text, sceneDur
 end
 
 
+---@class ClassCameraSetup:ClassHandle
 ---@class CameraSetup:Handle
----@class obj_CameraSetup:obj_Handle
-CameraSetup = newClass(Handle) ---@type CameraSetup
+CameraSetup = newClass(Handle) ---@type ClassCameraSetup
+
 function CameraSetup:new()
-    local object = self.old:new(CreateCameraSetup()) ---@type obj_CameraSetup
+    local object = self.old:new(CreateCameraSetup()) ---@type CameraSetup
     self:instantiate(object)
 
     ---@param whichField camerafield
@@ -384,7 +385,7 @@ function CameraSetup:new()
     ---@param x real
     ---@param y real
     ---@param duration real
-    ---@return obj_LocationHandle|self
+    ---@return LocationHandle|self
     function object.destLoc(x,y,duration)
         if not (x or y or duration) then
             return TempLocationHandle.move(object.destXPos(),object.destYPos())
@@ -394,9 +395,9 @@ function CameraSetup:new()
         return object
     end
 
-    ---@param p obj_Point
+    ---@param p Point
     ---@param duration real
-    ---@return obj_Point|self
+    ---@return Point|self
     function object.destPos(p,duration)
         if not p then
             return Point:new(object.destXPos(),object.destYPos(),object.destZPos())

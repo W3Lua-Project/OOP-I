@@ -1,12 +1,12 @@
 ---@class location:agent
 
+---@class ClassLocationHandle:ClassHandle
 ---@class LocationHandle:Handle
----@class obj_LocationHandle:obj_Handle
-LocationHandle = newClass(Handle) ---@type LocationHandle
+LocationHandle = newClass(Handle) ---@type ClassLocationHandle
 
 ---@param handle handle
 function LocationHandle:new(handle)
-    local object = self.old:new(handle) ---@type obj_LocationHandle
+    local object = self.old:new(handle) ---@type LocationHandle
     self:instantiate(object)
 
     ---@param value real
@@ -53,15 +53,9 @@ function LocationHandle:new(handle)
     return object
 end
 
--- ---@param handle location
--- ---@return obj_LocationHandle
--- function LocationHandle.fromHandle(handle)
---     return LocationHandle.getObject(handle)
--- end
-
 ---@param x real
 ---@param y real
----@return obj_LocationHandle
+---@return LocationHandle
 function LocationHandle:get(x,y)
     return self:new(Location(x,y))
 end
