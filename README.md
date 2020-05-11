@@ -7,7 +7,7 @@ Lua API for Ceres Project and Warcraft III custom maps.
 
 cd src/
 
-git clone https://github.com/WriteCoin/w3lua
+git clone https://github.com/WriteCoin/w3lua && rm -r w3lua/.git*
 
 
 
