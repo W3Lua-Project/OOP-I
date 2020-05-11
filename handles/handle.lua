@@ -8,8 +8,15 @@ local handles = {}
 Handle = newClass() ---@type Handle
 
 ---@param handle handle
+---@return obj_Handle
 function Handle:new(handle)
-    local object = Handle.old:new() ---@type obj_Handle
+    local object ---@type obj_Handle
+    if handles[handle] then
+        object = handles[handle]
+    else
+        object = self.old:new()
+        handles[handle] = object
+    end
 
     object.handle = handle ---@type handle
 
@@ -23,12 +30,13 @@ function Handle:new(handle)
     return object
 end
 
----@param handle handle
----@return obj_Handle
-function Handle.getObject(handle)
-    local obj = handles[handle]
-    if obj then
-        return obj
-    end
-    return Handle.new(handle)
-end
+-- ---@param handle handle
+-- ---@return obj_Handle
+-- function Handle.getObject(handle)
+--     local obj = handles[handle]
+--     if obj then
+--         return obj
+--     end
+--     return Handle.new(handle)
+-- end
+

@@ -3,7 +3,6 @@ do
     ---@class ObjectType
     local classGeneral = {} ---@type ClassType
 
-    ---@return table
     function classGeneral:new()
         local object = {class=tostring(self)} ---@type ObjectType
         return object

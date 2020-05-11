@@ -217,14 +217,24 @@ function Camera.eyeZ()
     return GetCameraEyePositionZ()
 end
 
----@return obj_HandlePoint
-function Camera.eyeHandlePoint()
-    return HandlePoint.fromHandle(GetCameraEyePositionLoc())
+---@return obj_LocationHandle
+function Camera.eyeLocation()
+    return TempLocationHandle.move(Camera.eyeX(),Camera.eyeY())
 end
 
----@return obj_HandlePoint
-function Camera.targetHandlePoint()
-    return HandlePoint.fromHandle(GetCameraTargetPositionLoc())
+---@return obj_Point
+function Camera.eyePos()
+    return Point:new(Camera.eyeX(),Camera.eyeY())
+end
+
+---@return obj_Location
+function Camera.targetLocation()
+    return TempLocationHandle.move(Camera.targetX(),Camera.targetY())
+end
+
+---@return obj_Point
+function Camera.targetPos()
+    return Point:new(Camera.targetX(),Camera.targetY())
 end
 
 function Camera.endCinematicScene()
@@ -356,62 +366,90 @@ end
 CameraSetup = newClass(Handle) ---@type CameraSetup
 function CameraSetup:new()
     local object = self.old:new(CreateCameraSetup()) ---@type obj_CameraSetup
-    
+    self:instantiate(object)
+
     ---@param whichField camerafield
     ---@param value real
     ---@param duration real
-    ---@return real|null
+    ---@return real|self
     function object.field(whichField,value,duration)
         if not (value or duration) then
             return CameraSetupGetField(object.handle,whichField)
         else
             CameraSetupSetField(object.handle,whichField,value,duration)
         end
+        return object
     end
 
     ---@param x real
     ---@param y real
     ---@param duration real
-    ---@return obj_HandlePoint|null
-    function object.destHandlePos(x,y,duration)
+    ---@return obj_LocationHandle|self
+    function object.destLoc(x,y,duration)
         if not (x or y or duration) then
-            return CameraSetupGetDestPositionLoc(object.handle)
+            return TempLocationHandle.move(object.destXPos(),object.destYPos())
         else
             CameraSetupSetDestPosition(object.handle,x,y,duration)
         end
+        return object
+    end
+
+    ---@param p obj_Point
+    ---@param duration real
+    ---@return obj_Point|self
+    function object.destPos(p,duration)
+        if not p then
+            return Point:new(object.destXPos(),object.destYPos(),object.destZPos())
+        else
+            CameraSetupSetDestPosition(object.handle,p.x(),p.y(),duration)
+        end
+        return object
     end
 
     ---@return real
-    function object.destPosX()
+    function object.destXPos()
         return CameraSetupGetDestPositionX(object.handle)
     end
 
     ---@return real
-    function object.destPosY()
+    function object.destYPos()
         return CameraSetupGetDestPositionY(object.handle)
+    end
+
+    ---@return real
+    function object.destZPos()
+        return TempLocationHandle.move(object.destXPos(),object.destYPos()).z()
     end
 
     ---@param doPan boolean
     ---@param panTimed boolean
+    ---@return self
     function object.apply(doPan,panTimed)
         CameraSetupApply(object.handle,doPan,panTimed)
+        return object
     end
 
     ---@param zDestOffset real
+    ---@return self
     function object.withZApply(zDestOffset)
         CameraSetupApplyWithZ(object.handle,zDestOffset)
+        return object
     end
 
     ---@param doPan boolean
     ---@param forceDuration real
+    ---@return self
     function object.forceDurationApply(doPan,forceDuration)
         CameraSetupApplyForceDuration(object.handle,doPan,forceDuration)
+        return object
     end
 
     ---@param zDestOffset real
     ---@param forceDuration real
+    ---@return self
     function object.withZForceDurationApply(zDestOffset,forceDuration)
         CameraSetupApplyForceDurationWithZ(object.handle,zDestOffset,forceDuration)
+        return object
     end
 
     ---@param doPan boolean
@@ -419,8 +457,10 @@ function CameraSetup:new()
     ---@param easeInDuration real
     ---@param easeOutDuration real
     ---@param smoothFactor real
+    ---@return self
     function object.smoothForceDurationApply(doPan,forcedDuration,easeInDuration,easeOutDuration,smoothFactor)
         BlzCameraSetupApplyForceDurationSmooth(object.handle,doPan,forcedDuration,easeInDuration,easeOutDuration,smoothFactor)
+        return object
     end
 
     return object
