@@ -30,7 +30,7 @@ function Lightning:new(handle)
     ---@param p2 Point
     ---@return boolean
     function obj.move(checkVisibility,p1,p2)
-        return obj.coordsMove(checkVisibility,p1.x(),p1.y(),p1.z(),p2.x(),p2.y(),p2.z())
+        return obj.coordsMove(checkVisibility,p1.getX(),p1.getY(),p1.getZ(),p2.getX(),p2.getY(),p2.getZ())
     end
 
     ---@return real

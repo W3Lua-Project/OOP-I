@@ -9,34 +9,31 @@ function LocationHandle:new(handle)
     local object = self.old:new(handle) ---@type LocationHandle
     self:instantiate(object)
 
-    ---@param value real
-    ---@return real|self
-    function object.x(value)
-        if not value then
-            return GetLocationX(object.handle)
-        else
-            MoveLocation(object.handle,value,object.y())
-        end
-        return object
+    ---@return real
+    function object.getX()
+        return GetLocationX(object.handle)
     end
-
-    ---@param value real
-    ---@return real|self
-    function object.y(value)
-        if not value then
-            return GetLocationY(object.handle)
-        else
-            MoveLocation(object.handle,object.x(),value)
-        end
+    ---@param x real
+    function object.setX(x)
+        MoveLocation(object.handle,x,object.getY())
         return object
     end
 
     ---@return real
-    function object.z()
+    function object.getY()
+        return GetLocationY(object.handle)
+    end
+    ---@param y real
+    function object.setY(y)
+        MoveLocation(object.handle,object.getX(),y)
+        return object
+    end
+
+    ---@return real
+    function object.getZ()
         return GetLocationZ(object.handle)
     end
 
-    ---@return self
     function object.remove()
         RemoveLocation(object.handle)
         return object
@@ -55,9 +52,8 @@ end
 
 ---@param x real
 ---@param y real
----@return LocationHandle
-function LocationHandle:get(x,y)
+function LocationHandle:alloc(x,y)
     return self:new(Location(x,y))
 end
 
-TempLocationHandle = LocationHandle:get(0,0)
+TempLocationHandle = LocationHandle:alloc(0,0)

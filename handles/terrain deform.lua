@@ -10,8 +10,10 @@ function TerrainDeformation:new(handle)
     self:instantiate(obj)
 
     ---@param duration integer
+    ---@return self
     function obj.stop(duration)
         TerrainDeformStop(obj.handle,duration)
+        return obj
     end
 
     return obj

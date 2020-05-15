@@ -370,16 +370,32 @@ function CameraSetup:new()
     self:instantiate(object)
 
     ---@param whichField camerafield
+    ---@return real
+    function object.getField(whichField)
+        return CameraSetupGetField(object.handle,whichField)
+    end
+    ---@param whichField camerafield
     ---@param value real
     ---@param duration real
-    ---@return real|self
-    function object.field(whichField,value,duration)
-        if not (value or duration) then
-            return CameraSetupGetField(object.handle,whichField)
-        else
-            CameraSetupSetField(object.handle,whichField,value,duration)
-        end
+    function object.setField(whichField,value,duration)
+        CameraSetupSetField(object.handle,whichField,value,duration)
         return object
+    end
+
+    ---@param x real
+    ---@param y real
+    ---@param duration real
+    function object.setDestCoordsPos(x,y,duration)
+        CameraSetupSetDestPosition(object.handle,x,y,duration)
+        return object
+    end
+    ---@param p Point
+    ---@param duration real
+    function object.setDestPos(p,duration)
+        return object.setDestCoordsPos(p.getX(),p.getY(),duration)
+    end
+    function object.getDestPos()
+        return Point:new(object.getDestXPos(),object.getDestYPos(),object.getDestZPos())
     end
 
     ---@param x real
@@ -408,30 +424,28 @@ function CameraSetup:new()
     end
 
     ---@return real
-    function object.destXPos()
+    function object.getDestXPos()
         return CameraSetupGetDestPositionX(object.handle)
     end
 
     ---@return real
-    function object.destYPos()
+    function object.getDestYPos()
         return CameraSetupGetDestPositionY(object.handle)
     end
 
     ---@return real
-    function object.destZPos()
-        return TempLocationHandle.move(object.destXPos(),object.destYPos()).z()
+    function object.getDestZPos()
+        return TempLocationHandle.move(object.getDestXPos(),object.getDestYPos()).getZ()
     end
 
     ---@param doPan boolean
     ---@param panTimed boolean
-    ---@return self
     function object.apply(doPan,panTimed)
         CameraSetupApply(object.handle,doPan,panTimed)
         return object
     end
 
     ---@param zDestOffset real
-    ---@return self
     function object.withZApply(zDestOffset)
         CameraSetupApplyWithZ(object.handle,zDestOffset)
         return object
@@ -447,7 +461,6 @@ function CameraSetup:new()
 
     ---@param zDestOffset real
     ---@param forceDuration real
-    ---@return self
     function object.withZForceDurationApply(zDestOffset,forceDuration)
         CameraSetupApplyForceDurationWithZ(object.handle,zDestOffset,forceDuration)
         return object
@@ -458,7 +471,6 @@ function CameraSetup:new()
     ---@param easeInDuration real
     ---@param easeOutDuration real
     ---@param smoothFactor real
-    ---@return self
     function object.smoothForceDurationApply(doPan,forcedDuration,easeInDuration,easeOutDuration,smoothFactor)
         BlzCameraSetupApplyForceDurationSmooth(object.handle,doPan,forcedDuration,easeInDuration,easeOutDuration,smoothFactor)
         return object

@@ -10,13 +10,11 @@
 ---@class playergameresult:handle
 
 PlayerState = {}
-
 ---@param i integer
 ---@return playerstate
 function PlayerState.convert(i)
     return ConvertPlayerState(i)
 end
-
 -- current resource levels
 --
 PlayerState.ResourceGold = PlayerState.convert(1)
@@ -32,28 +30,68 @@ PlayerState.Placed = PlayerState.convert(9)
 PlayerState.OnDeathObserver = PlayerState.convert(10)
 PlayerState.Observer = PlayerState.convert(11)
 PlayerState.Unfollowable = PlayerState.convert(12)
-
 -- taxation rate for each resource
 --
 PlayerState.GoldUpkeepRate = PlayerState.convert(13)
 PlayerState.LumberUpkeepRate = PlayerState.convert(14)
-
 -- cumulative resources collected by the player during the mission
 --
 PlayerState.GoldGathered = PlayerState.convert(15)
 PlayerState.LumberGathered = PlayerState.convert(16)
-
 PlayerState.NoCreepSleep = PlayerState.convert(25)
 
 
-AllianceType = {}
+Race = {}
+---@param i integer
+---@return race
+function Race.convert(i)
+    return ConvertRace(i)
+end
+Race.Human = Race.convert(1)
+Race.Orc = Race.convert(2)
+Race.Undead = Race.convert(3)
+Race.NightElf = Race.convert(4)
+Race.Demon = Race.convert(5)
+Race.Other = Race.convert(7)
 
+PlayerColor = {}
+---@param i integer
+---@return playercolor
+function PlayerColor.convert(i)
+    return ConvertPlayerColor(i)
+end
+
+PlayerColor.Red = PlayerColor.convert(0)
+PlayerColor.Blue = PlayerColor.convert(1)
+PlayerColor.Cyan = PlayerColor.convert(2)
+PlayerColor.Purple = PlayerColor.convert(3)
+PlayerColor.Yellow = PlayerColor.convert(4)
+PlayerColor.Orange = PlayerColor.convert(5)
+PlayerColor.Green = PlayerColor.convert(6)
+PlayerColor.Pink = PlayerColor.convert(7)
+PlayerColor.LightGray = PlayerColor.convert(8)
+PlayerColor.LightBlue = PlayerColor.convert(9)
+PlayerColor.Aqua = PlayerColor.convert(10)
+PlayerColor.Brown = PlayerColor.convert(11)
+PlayerColor.Maroon = PlayerColor.convert(12)
+PlayerColor.Navy = PlayerColor.convert(13)
+PlayerColor.Turquoise = PlayerColor.convert(14)
+PlayerColor.Violet = PlayerColor.convert(15)
+PlayerColor.Wheat = PlayerColor.convert(16)
+PlayerColor.Peach = PlayerColor.convert(17)
+PlayerColor.Mint = PlayerColor.convert(18)
+PlayerColor.Lavender = PlayerColor.convert(19)
+PlayerColor.Coal = PlayerColor.convert(20)
+PlayerColor.Snow = PlayerColor.convert(21)
+PlayerColor.Emerald = PlayerColor.convert(22)
+PlayerColor.Peanut = PlayerColor.convert(23)
+
+AllianceType = {}
 ---@param i integer
 ---@return alliancetype
 function AllianceType.convert(i)
     return ConvertAllianceType(i)
 end
-
 AllianceType.Passive = AllianceType.convert(0)
 AllianceType.HelpRequest = AllianceType.convert(1)
 AllianceType.HelpResponse = AllianceType.convert(2)
@@ -65,15 +103,12 @@ AllianceType.SharedAdvancedControl = AllianceType.convert(7)
 AllianceType.Rescuable = AllianceType.convert(8)
 AllianceType.SharedVisionForced = AllianceType.convert(9)
 
-
 PlayerGameResult = {}
-
 ---@param i integer
 ---@return playergameresult
 function PlayerGameResult.convert(i)
     return ConvertPlayerGameResult(i)
 end
-
 PlayerGameResult.Victory = PlayerGameResult.convert(0)
 PlayerGameResult.Defeat = PlayerGameResult.convert(1)
 PlayerGameResult.Tie = PlayerGameResult.convert(2)

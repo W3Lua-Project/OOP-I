@@ -25,20 +25,17 @@ function Dialog:new()
     local obj = self.old:new(DialogCreate()) ---@type Dialog
     self:instantiate(obj)
 
-    ---@return self
     function obj.destroy()
         DialogDestroy(obj.handle)
         return obj
     end
 
-    ---@return self
     function obj.clear()
         DialogClear(obj.handle)
         return obj
     end
 
     ---@param messageText string
-    ---@return self
     function obj.setMessage(messageText)
         DialogSetMessage(obj.handle,messageText)
         return obj
@@ -68,7 +65,6 @@ function Dialog:new()
 
     ---@param whichPlayer Player
     ---@param flag boolean
-    ---@return self
     function obj.display(whichPlayer,flag)
         DialogDisplay(whichPlayer.handle,obj.handle,flag)
         return obj

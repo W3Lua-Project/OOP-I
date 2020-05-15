@@ -11,36 +11,33 @@ function Point:new(x,y,z)
     object.coordY = defaultValue(y,0)
     object.coordZ = defaultValue(z,0)
 
+    ---@return real
+    function object.getX()
+        return object.coordX
+    end
     ---@param x real
-    ---@return real|self
-    function object.x(x)
-        if not x then
-            return object.coordX
-        else
-            object.coordX = x
-        end
+    function object.setX(x)
+        object.coordX = x
         return object
     end
 
+    ---@return real
+    function object.getY()
+        return object.coordY
+    end
     ---@param y real
-    ---@return real|self
-    function object.y(y)
-        if not y then
-            return object.coordY
-        else
-            object.coordY = y
-        end
+    function object.setY(y)
+        object.coordY = y
         return object
     end
 
+    ---@return real
+    function object.getZ()
+        return object.coordZ
+    end
     ---@param z real
-    ---@return real|self
-    function object.z(z)
-        if not z then
-            return object.coordZ
-        else
-            object.coordZ = z
-        end
+    function object.setZ(z)
+        object.coordZ = z
         return object
     end
 
@@ -57,7 +54,7 @@ function Point:new(x,y,z)
 
     ---@return  boolean
     function object.isBlighted()
-        return IsPointBlighted(object.x(),object.y())
+        return IsPointBlighted(object.getX(),object.getY())
     end
 
     return object

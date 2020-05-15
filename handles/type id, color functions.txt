@@ -1,0 +1,11 @@
+TYPEID:
+===========
+CreateDestructable
+AddWeatherEffect
+PlayerTechMaxAllowed, PlayerTechResearched, PlayerTechCount, SetPlayerAbilityAvailable
+
+
+COLOR:
+===========
+Lightning
+SpecialEffect

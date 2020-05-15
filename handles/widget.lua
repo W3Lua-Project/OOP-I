@@ -12,34 +12,33 @@ function Widget:new(handle)
     local object = self.old:new(handle) ---@type Widget
     self:instantiate(object)
 
+    ---@return real
+    function object.getLife()
+        return GetWidgetLife(object.handle)
+    end
     ---@param newLife real
-    ---@return real|self
-    function object.life(newLife)
-        if not newLife then
-            return GetWidgetLife(object.handle)
-        else
-            SetWidgetLife(object.handle,newLife)
-        end
+    function object.setLife(newLife)
+        SetWidgetLife(object.handle,newLife)
         return object
     end
 
     ---@return real
-    function object.x()
+    function object.getX()
         return GetWidgetX(object.handle)
     end
 
     ---@return real
-    function object.y()
+    function object.getY()
         return GetWidgetY(object.handle)
     end
 
     ---@return real
-    function object.z()
-        return TempLocationHandle.move(object.x(),object.y()).z()
+    function object.getZ()
+        return TempLocationHandle.move(object.getX(),object.getY()).getZ()
     end
 
-    function object.pos()
-        return Point:new(object.x(),object.y(),object.z())
+    function object.getPos()
+        return Point:new(object.getX(),object.getY(),object.getZ())
     end
 
     return object
