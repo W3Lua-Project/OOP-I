@@ -387,9 +387,13 @@ end
 
 ---@param number integer
 function ClassPlayer:get(number)
-    return ClassPlayer:new(Player(number))
+    return self:new(Player(number))
 end
 
 function ClassPlayer:Local()
-    return ClassPlayer:new(GetLocalPlayer())
+    return self:new(GetLocalPlayer())
+end
+
+function ClassPlayer:triggered()
+    return self:new(GetTriggerPlayer())
 end

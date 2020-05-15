@@ -7,9 +7,9 @@ Point = newClass() ---@type ClassPoint
 ---@param z real
 function Point:new(x,y,z)
     local object = self.old:new() ---@type Point
-    object.coordX = x
-    object.coordY = y
-    object.coordZ = z
+    object.coordX = defaultValue(x,0)
+    object.coordY = defaultValue(y,0)
+    object.coordZ = defaultValue(z,0)
 
     ---@param x real
     ---@return real|self
@@ -53,6 +53,11 @@ function Point:new(x,y,z)
         object.coordY = y
         object.coordZ = z
         return object
+    end
+
+    ---@return  boolean
+    function object.isBlighted()
+        return IsPointBlighted(object.x(),object.y())
     end
 
     return object

@@ -1,0 +1,3 @@
+CreateDestructable
+AddWeatherEffect
+PlayerTechMaxAllowed, PlayerTechResearched, PlayerTechCount
