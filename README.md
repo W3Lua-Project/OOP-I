@@ -1,5 +1,5 @@
-# w3lua
-Lua API for Ceres Project and Warcraft III custom maps.
+# W3Lua Project - OOP-I
+Lua OOP-API for Ceres Project and Warcraft III custom maps.
 
 Первая версия ООП на Lua, которую автор пытался реализовать в мае 2020 года. Считается устаревшей. Готовится работа над новой версией, репозиторий OOP-II.
 
