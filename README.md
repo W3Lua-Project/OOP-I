@@ -14,6 +14,6 @@ Lua OOP-API for Ceres Project and Warcraft III custom maps.
 
 Пропишите в main.lua:
 
-require 'w3lua.main'
+`require 'w3lua.main'`
 
 Компилируйте карту по Ceres: ресурсы будут задействованы.
