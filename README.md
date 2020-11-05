@@ -10,10 +10,10 @@ Lua OOP-API for Ceres Project and Warcraft III custom maps.
 Клонируйте проект в папку src проекта Ceres чистого Lua: https://github.com/ceres-wc3/ceres-lua-template
 
 `cd src/`
-`git clone https://github.com/WriteCoin/w3lua`
+`git clone https://github.com/W3Lua-Project/OOP-I.git`
 
 Пропишите в main.lua:
 
-`require 'w3lua.main'`
+`require 'OOP-I.index'`
 
 Компилируйте карту по Ceres: ресурсы будут задействованы.

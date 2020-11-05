@@ -11,13 +11,13 @@ function FormatCC(id)
     end
 end
 
-require 'w3lua.handles.handle'
-require 'w3lua.handles.location handle'
-require 'w3lua.handles.point'
-require 'w3lua.handles.widget'
-require "w3lua.handles.player"
-require "w3lua.handles.dialog"
-require 'w3lua.handles.destructable'
-require 'w3lua.handles.camera'
-require "w3lua.handles.automation test"
-require "w3lua.handles.blight"
+require 'OOP-I.handles.handle'
+require 'OOP-I.handles.location handle'
+require 'OOP-I.handles.point'
+require 'OOP-I.handles.widget'
+require 'OOP-I.handles.player'
+require 'OOP-I.handles.dialog'
+require 'OOP-I.handles.destructable'
+require 'OOP-I.handles.camera'
+require 'OOP-I.handles.automation test'
+require 'OOP-I.handles.blight'
