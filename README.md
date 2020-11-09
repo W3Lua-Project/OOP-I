@@ -5,7 +5,7 @@ Lua OOP-API for Ceres Project and Warcraft III custom maps.
 
 # Установка
 
-## Аналогично для других репозиториев проекта
+## Аналогично для других репозиториев проекта (устаревший способ)
 
 Клонируйте проект в папку src проекта Ceres чистого Lua: https://github.com/ceres-wc3/ceres-lua-template
 
@@ -17,3 +17,9 @@ Lua OOP-API for Ceres Project and Warcraft III custom maps.
 `require 'OOP-I.index'`
 
 Компилируйте карту по Ceres: ресурсы будут задействованы.
+
+## новый способ
+
+Перейдите в папку modules в основном проекте: `cd modules`
+
+Используйте команду: `req wc3lua oop-i`

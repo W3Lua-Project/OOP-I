@@ -1,6 +1,6 @@
-require 'OtherFunctions.index'
+require 'modules.other-functions.index'
 
-require 'OOP-I.classes'
-require 'OOP-I.decl'
-require 'OOP-I.constants'
-require 'OOP-I.handles.index'
+require 'modules.oop-i.classes'
+require 'modules.oop-i.decl'
+require 'modules.oop-i.constants'
+require 'modules.oop-i.handles.index'

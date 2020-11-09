@@ -11,13 +11,12 @@ function FormatCC(id)
     end
 end
 
-require 'OOP-I.handles.handle'
-require 'OOP-I.handles.location handle'
-require 'OOP-I.handles.point'
-require 'OOP-I.handles.widget'
-require 'OOP-I.handles.player'
-require 'OOP-I.handles.dialog'
-require 'OOP-I.handles.destructable'
-require 'OOP-I.handles.camera'
-require 'OOP-I.handles.automation test'
-require 'OOP-I.handles.blight'
+require 'modules.oop-i.handles.handle'
+require 'modules.oop-i.handles.location handle'
+require 'modules.oop-i.handles.point'
+require 'modules.oop-i.handles.widget'
+require 'modules.oop-i.handles.player'
+require 'modules.oop-i.handles.destructable'
+require 'modules.oop-i.handles.camera'
+require 'modules.oop-i.handles.automation test'
+require 'modules.oop-i.handles.blight'
